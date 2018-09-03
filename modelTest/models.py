@@ -38,16 +38,13 @@ class Blog(models.Model):
         else:
             super().save(*args, **kwargs)  # Call the "real" save() method.
 
+    def __str__(self):
+        return self.name
+
+
 class Preson(models.Model):
     prople = models.Manager()
 
-
-class Blog(models.Model):
-    name = models.CharField(max_length=100)
-    tagline = models.TextField()
-
-    def __str__(self):
-        return self.name
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
@@ -55,6 +52,7 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Entry(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)

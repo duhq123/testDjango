@@ -4,44 +4,18 @@ from .models import Question, Choice
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.template import loader
 
 # Create your views here.
-'''
-def index(request):
-    # return render(request, 'index.html', {'index': "Hello, World. You`re at the polls index."})
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    output = ', '.join([q.question_text for q in latest_question_list])
-    return HttpResponse(output)
-    # latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    # template = loader.get_template('polls/index.html')
-    # context = {
-    #     'latest_question_list': latest_question_list,
-    # }
-    # return HttpResponse(template.render(context, request))
 
+class TestView(APIView):  # CBV模式的视图函数
 
-def detail(request, question_id):
-    # try:
-    #     question = Question.objects.get(pk=question_id)
-    # except Question.DoesNotExist:
-    #     raise Http404("Question does not exist")
-    # return render(request, 'polls/detail.html', {'question': question})
-
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/detail.html', {'question': question})
-    # if Question.objects.count() < question_id :
-    #     return HttpResponse('question_id has Error')
-    # else:
-    #     return HttpResponse("You're looking at question %s." % question_id)
-
-
-def results(request, question_id):
-    # response = "You're looking at the results of question %s."
-    # return HttpResponse(response % question_id)
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
-'''
+    def get(self, request, *args, **kwargs):
+        # 定义get方法
+        # 在django-rest-framework中的request被重新封装了，后续分析源码的时候会有具体体现
+        return Response('测试api')  # rest-framework的模板对数据进行渲染
 
 
 class IndexView(generic.ListView):
@@ -72,8 +46,6 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
-# def vote(request, question_id):
-# return HttpResponse("You're voting on question %s." % question_id)
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:

@@ -17,7 +17,7 @@ def querydb_getCsv(db):
     cursor = db.cursor()
 
     # SQL 查询语句
-    time = '2018-08-29 '
+    time = '2018-08-27 '
     args = time + '%'
     sql = "select * from users_usercall where call_time like '%s'" % args
 
@@ -27,9 +27,11 @@ def querydb_getCsv(db):
         # 获取所有记录列表
         results = cursor.fetchall()
         messageNotKonw = ['未知', '数据查询错误']
+        codeSuccess = ['1', '-1', '-2', '-3', '-4']
         file_name = 'test1.csv'
         target = os.path.join('/Users/edz/Desktop', file_name)
         target_header = ['id', 'name', 'mobile', 'id_card', 'result']
+        total, success_total = 0, 0
         with open(target, 'w+') as f1:
             writer = csv.writer(f1)
             writer.writerow(target_header)
@@ -37,15 +39,19 @@ def querydb_getCsv(db):
                 param = eval(row[4])
                 result = eval(row[5])
                 a = (1 if result.__len__() == 2 else result.__len__())
+                total = a + total
                 if a == 1:
-                    id, name, mobile, id_card, message = get_one(result, param)
+                    id, code, name, mobile, id_card, message = get_one(result, param)
                 else:
-                    id, name, mobile, id_card, message = get_more(result)
+                    id, code, name, mobile, id_card, message = get_more(result)
+                if code in codeSuccess:
+                    success_total = success_total + 1
                 if message in messageNotKonw:
                     writer.writerow(
                         [id, name, mobile, str(id_card), message])
                 else:
                     pass
+        print(f'total: {total}, success_total: {success_total}')
         print('结束')
     except:
         print("Error: unable to fecth data")
@@ -58,21 +64,23 @@ def querydb_getCsv(db):
 
 def get_one(result, param):
     id = 0
+    code = result['code']
     name = param['name']
     mobile = param['mobile']
     id_card = param['id_card']
     message = result['message']
-    return id, name, mobile, id_card, message
+    return id, code, name, mobile, id_card, message
 
 
 def get_more(result):
     for i in range(int(result.__len__())):
         id = result[i]['id']
+        code = result[i]['code']
         name = result[i]['name']
         mobile = result[i]['mobile']
         id_card = result[i]['id_card']
         message = result[i]['message']
-    return id, name, mobile, id_card, message
+    return id, code, name, mobile, id_card, message
 
 
 def main():

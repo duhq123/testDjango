@@ -15,11 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 from testDjango import views
-# from polls import views as v2
+
+from rest_framework import routers
+from polls import views as views1
+
+router = routers.DefaultRouter()
+router.register(r'users', views1.UserViewSet)
+router.register(r'groups', views1.GroupViewSet)
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('hello/', views.hello),
     path('admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

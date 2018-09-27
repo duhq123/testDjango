@@ -1,22 +1,30 @@
 import re
+import datetime
 
-def test(str):
-    # str = 'aaaasdasdas546456sfdsa123dasdad11asda1dasd2dasd'
+def test(card_data):
     pattern = re.compile(r'\d+')
-    match = pattern.findall(str)
+    match = pattern.findall(card_data)
     print(match)
-    for i in range(match.__len__()):
-        if len(match[i]) > 1:
-            a = str.index(match[i])
-            b = len(match[i])
-            str = str[0:a] + '<a>' + match[i] + '</a>' + str[a + b:]
-        # print(str)
-    print(str)
+    a, l, card_data1 = 0, 0, ''
+    for i in range(len(match)):
+        a = card_data[a:].find(match[i])
+        b = len(match[i])
+        text = card_data[l + a + b:]
+        card_data = card_data[l:a + l] + '<figure>' + match[i] + '</figure>'
+        card_data1 = card_data = card_data1 + card_data
+        l = a = len(card_data)
+        card_data = card_data + text
+    print(card_data)
 
+
+def tese_time(date):
+    date1 = datetime.datetime.now().__format__('%Y-%m')
+    print(date1>date or date1 == date)
+    print(date1)
+    date2 = datetime.datetime(year=datetime.datetime.now().year, month=datetime.datetime.now().month-1, day=1).__format__('%Y-%m')
+    print(date2)
 
 if __name__ == '__main__':
-    # str = '京A23B45'
-    # str = '京A2B345'
-    str = '京A2B34N'
-    # str = 'aaaasdasdas546456sfdsa123dasdad11asda1dasd2dasd'
-    test(str)
+    # card_data = '京A555N55C5的骑车'
+    # test(card_data)
+    tese_time('2018-09')

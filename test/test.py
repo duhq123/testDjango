@@ -1,7 +1,4 @@
 # -*- coding:utf-8 -*-
-__author__ = 'zhuyuru'
-#参考 https://www.jianshu.com/p/4e39444d5ebc
-# from workbook import Workbook
 import os
 import sys
 import time
@@ -53,7 +50,8 @@ def create_xls(file_path, list):
 
 
 if __name__ == '__main__':
-    srcfile = '/Users/edz/Desktop/order.csv'
+    # srcfile = '/Users/edz/Desktop/jkg2_order.csv'
+    srcfile = '/Users/edz/Desktop/jkg2_customer.csv'
     floder = os.path.dirname(os.path.realpath(__file__))
     # srcfile=floder+u'/srcdata.csv'
     print("srcfile:%s"%(srcfile))

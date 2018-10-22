@@ -7,7 +7,12 @@
 </head>
 <body>
     <center>
-        <h1>{{ index }}</h1>
+        <form enctype="multipart/form-data" action="/uploadFile/" method="post">
+            <input type="file" name="myfile" />
+            <br/>
+            <input type="submit" value="upload"/>
+        </form>
+
     </center>
 </body>
 </html>

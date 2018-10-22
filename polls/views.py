@@ -7,8 +7,29 @@ from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.template import loader
-
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from polls.serializers import UserSerializer, GroupSerializer
+from fileoperation.models import UploadFileForm
 # Create your views here.
+
+
+def upload_file(request):
+    if request.method == "POST":
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_upload_file(request.FILES['file'])
+            #handle_upload_file(form.files['file'])
+            return HttpResponse('upload success!')
+    else:
+        form = UploadFileForm()
+    return render(request, 'polls/../templates/upload.html', {'form': form})
+
+
+def handle_upload_file(file):
+    with open("/tmp/%s" % file.name, 'wb+') as f:
+        for chunk in file.chunks():
+            f.write(chunk)
 
 class TestView(APIView):  # CBV模式的视图函数
 
@@ -63,3 +84,19 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    允许用户查看或编辑的API路径。
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    允许组查看或编辑的API路径。
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer

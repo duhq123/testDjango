@@ -51,7 +51,8 @@ def create_xls(file_path, list):
 
 if __name__ == '__main__':
     # srcfile = '/Users/edz/Desktop/jkg2_order.csv'
-    srcfile = '/Users/edz/Desktop/jkg2_customer.csv'
+    # srcfile = '/Users/edz/Desktop/jkg2_customer.csv'
+    srcfile = '/Users/edz/Desktop/handle_52.csv'
     floder = os.path.dirname(os.path.realpath(__file__))
     # srcfile=floder+u'/srcdata.csv'
     print("srcfile:%s"%(srcfile))

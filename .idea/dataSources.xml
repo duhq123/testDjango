@@ -15,14 +15,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="db" uuid="24f3bf3b-c93a-4153-81b6-d981c12deb61">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="psql_test" uuid="468949fb-a22c-4da9-b92c-aad77818c965">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
-      <driver-properties>
-        <property name="enable_load_extension" value="true" />
-      </driver-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/duhq</jdbc-url>
     </data-source>
   </component>
 </project>

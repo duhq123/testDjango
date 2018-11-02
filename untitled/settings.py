@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'fileoperation.apps.FileoperationConfig',
     'modelTest.apps.ModeltestConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',

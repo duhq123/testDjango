@@ -29,9 +29,10 @@ from collections import Counter
 '''
 def testWordNums(words):
     word_counts = Counter(words)
-    top_three = word_counts.most_common(3)
-    print(word_counts,'\n',top_three)
-    return top_three
+    # top_three = word_counts.most_common(3)
+    # print(word_counts,'\n',top_three)
+    print(word_counts)
+    # return top_three
 
 
 '''

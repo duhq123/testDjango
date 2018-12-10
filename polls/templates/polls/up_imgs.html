@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多图片上传</title>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <style>
+        label{width: 80%;padding: 10px 20px;display: block}
+        label input{border: 1px solid #eee;padding: 10px 20px;margin-left: 20px}
+    </style>
+</head>
+<body>
+<form action="upload_imgs" method="POST" enctype="multipart/form-data">
+    <label>项目打包图片<input type="file" name="imgs" multiple></label>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

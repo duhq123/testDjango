@@ -11,7 +11,7 @@ import fnmatch, os
 from tjtts.VoiceUtils import wav_8k_to_16k
 
 if __name__ == '__main__':
-    dirname = '/Users/edz/Desktop/yuyinshibie/test'
+    dirname = '/Users/edz/Desktop/yuyinshibie/huashu'
     for file in os.listdir(dirname):
         if fnmatch.fnmatch(file, '*.wav'):
             path = os.path.join(dirname, file)

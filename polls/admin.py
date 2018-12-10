@@ -39,3 +39,17 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 
 admin.site.register(Choice)
+
+
+
+# Register your models here.
+from .models import Imgs,Imgs_name
+class img_up(admin.ModelAdmin):
+    list_display = ('id','img','single')
+    filter_horizontal = ('imgs',)
+
+admin.site.register(Imgs, img_up)
+
+class test_img_up(admin.ModelAdmin):
+    list_display = ('id','name')
+admin.site.register(Imgs_name, test_img_up)

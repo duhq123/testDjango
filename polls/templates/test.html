@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div v-for="a in (1,2,3,4)">
+        <button v-show="true" @click="start(a)" :id="'start-'+a">录音</button>
+        <button v-show="false" @click="save(a)" :id="'save-'+a">保存</button>
+        <button v-show="false" @click="cancel(a)" :id="'cancel-'+a">取消</button>
+    </div>
+</div>
+
+</body>
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            status: {}
+        },
+        computed: {
+
+        },
+        methods: {
+            start: function(id){
+                document.getElementById('save-'+id).style.display = 'inline';
+                document.getElementById('cancel-'+id).style.display = 'inline';
+                document.getElementById('start-'+id).style.display = 'none';
+            },
+            cancel: function(id){
+                document.getElementById('save-'+id).style.display = 'none';
+                document.getElementById('cancel-'+id).style.display = 'none';
+                document.getElementById('start-'+id).style.display = 'inline';
+            },
+            save: function(id){
+                document.getElementById('save-'+id).style.display = 'none';
+                document.getElementById('cancel-'+id).style.display = 'none';
+                document.getElementById('start-'+id).style.display = 'inline';
+            },
+
+        }
+
+    })
+
+</script>
+</html>

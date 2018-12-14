@@ -34,9 +34,11 @@ if __name__ == '__main__':
     a = 0
     flage = True
     while True:
-        if a == 0 :
-            session = input('--Please input your session?\n--')
-            a +=1
+        # if a == 0 :
+        #     session = input('--Please input your session?\n--')
+        #     a +=1
+        session = random.randrange(1, 99999)
+        # print(session)
         question = input('--Please input your question?\n--')
         params = rb.chat(session, question)
         res_data = rb.getwords(params)

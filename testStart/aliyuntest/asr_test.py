@@ -87,9 +87,9 @@ def fileTrans(akId, akSecret, appKey, fileLink):
 
 if __name__ == '__main__':
 
-    accessKeyId = "LTAIY0hOK9S668ob"
-    accessKeySecret = "kJKBbEZo29mAxgVcjcbUyUyqXHEr2G"
-    appKey = "9ENKSQKvg4RGQDd6"
+    accessKeyId = ""
+    accessKeySecret = ""
+    appKey = ""
     # fileLink = "https://aliyun-nls.oss-cn-hangzhou.aliyuncs.com/asr/fileASR/examples/nls-sample-16k.wav"
     fileLink = '/Users/edz/Desktop/100.wav'
     # 执行录音文件识别
